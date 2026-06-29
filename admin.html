@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Administrativo | Consultores Martín S.A.S.</title>
+  <style>
+    :root{--azul:#0f2f3a;--azul-2:#173f4d;--salmon:#d98b6f;--salmon-suave:#f3e3dc;--crema:#f8f5f2;--gris:#667085;--borde:#ead7cf;--blanco:#fff;--verde:#198754;--amarillo:#9a6700;--rojo:#b42318;--sombra:0 18px 42px rgba(15,47,58,.10)}
+    *{box-sizing:border-box} body{margin:0;font-family:Raleway,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at top left,rgba(217,139,111,.20),transparent 32%),linear-gradient(180deg,#fff 0%,var(--crema) 42%,#fff 100%);color:var(--azul)}
+    .topbar{background:var(--blanco);border-bottom:1px solid var(--borde);padding:18px 34px;display:flex;justify-content:space-between;align-items:center;gap:18px;position:sticky;top:0;z-index:10;box-shadow:0 6px 20px rgba(15,47,58,.05)}
+    .brand{display:flex;align-items:center;gap:16px}.brand img{width:86px;height:auto;object-fit:contain}.brand h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:25px;letter-spacing:1px}.brand p{margin:4px 0 0;color:var(--gris);font-size:13px}
+    .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.pill{background:var(--azul);color:#fff;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800;letter-spacing:.2px;display:inline-block}
+    main{max-width:1440px;margin:28px auto 46px;padding:0 24px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch}.hero-card{background:var(--blanco);border:1px solid var(--borde);border-radius:28px;padding:30px;box-shadow:var(--sombra);overflow:hidden;position:relative}.hero-card:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-85px;top:-85px;background:rgba(217,139,111,.16)}.hero-card h2{margin:12px 0 8px;font-size:34px;line-height:1.1}.hero-card p{margin:0;color:var(--gris);line-height:1.55;max-width:760px}.notice{background:var(--salmon-suave);border-left:5px solid var(--salmon);border-radius:18px;padding:20px;color:var(--azul);font-size:14px;line-height:1.55}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}.stat{background:var(--blanco);border:1px solid var(--borde);border-radius:22px;padding:22px;box-shadow:0 10px 26px rgba(15,47,58,.06)}.stat span{color:var(--gris);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.3px}.stat strong{display:block;font-size:32px;margin-top:8px;color:var(--azul)}
+    .section{background:var(--blanco);border:1px solid var(--borde);border-radius:26px;margin-top:24px;overflow:hidden;box-shadow:var(--sombra)}.section-head{background:var(--azul);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;gap:14px;align-items:center}.section-head h3{margin:0;font-size:19px}.section-head span{font-size:13px;opacity:.9}
+    .filters{padding:24px;display:grid;grid-template-columns:repeat(6,minmax(130px,1fr));gap:16px;align-items:end}label{display:block;font-size:13px;font-weight:800;margin-bottom:7px;color:var(--azul)}input,select{width:100%;border:1px solid #dcc8bf;border-radius:14px;padding:12px 13px;background:#fff;color:var(--azul);outline:none;font-size:14px}input:focus,select:focus{border-color:var(--salmon);box-shadow:0 0 0 4px rgba(217,139,111,.16)}
+    .buttons{padding:0 24px 24px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.button-group{display:flex;gap:10px;flex-wrap:wrap}button{border:none;border-radius:15px;padding:12px 18px;font-weight:900;cursor:pointer;font-size:14px;transition:.18s ease}.btn-primary{background:var(--azul);color:#fff}.btn-primary:hover{background:var(--azul-2)}.btn-light{background:var(--salmon-suave);color:var(--azul);border:1px solid var(--borde)}.btn-light:hover{background:#efd4c9}.btn-excel{background:var(--verde);color:#fff}.btn-excel:hover{filter:brightness(.92)}.resume{padding:0 24px 18px;color:var(--gris);font-size:14px}
+    .table-wrap{overflow:auto;border-top:1px solid var(--borde)}table{width:100%;min-width:1200px;border-collapse:collapse}th{text-align:left;padding:14px 16px;background:#fbf7f5;border-bottom:1px solid var(--borde);color:var(--azul);font-size:13px;white-space:nowrap}td{padding:14px 16px;border-bottom:1px solid #f0e4df;color:#18323b;font-size:14px;vertical-align:middle}tr:hover td{background:#fffaf8}
+    .status{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:900;background:#fff1d6;color:var(--amarillo);white-space:nowrap}.status.aprobado{background:#dcfce7;color:#166534}.status.rechazado{background:#fee2e2;color:var(--rojo)}.status.info{background:#e0f2fe;color:#075985}.small-btn{padding:8px 10px;border-radius:10px;font-size:12px;background:#f6efeb;color:var(--azul);border:1px solid var(--borde);text-decoration:none;display:inline-block;font-weight:900;margin-right:4px;white-space:nowrap}.small-btn:hover{background:#ead7cf}.empty{text-align:center;padding:34px;color:var(--gris)}.loading{opacity:.55;pointer-events:none}
+    .drawer-backdrop{position:fixed;inset:0;background:rgba(15,47,58,.42);display:none;justify-content:flex-end;z-index:40}.drawer-backdrop.active{display:flex}.drawer{width:min(760px,96vw);height:100%;background:#fff;box-shadow:-22px 0 48px rgba(0,0,0,.18);overflow:auto;padding:0}.drawer-header{background:var(--azul);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.drawer-header h3{margin:0;font-size:22px}.drawer-header p{margin:6px 0 0;font-size:13px;opacity:.9}.close{background:transparent;color:#fff;font-size:28px;padding:0 6px}.drawer-body{padding:22px}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}.detail{border:1px solid var(--borde);background:#fffaf8;border-radius:14px;padding:13px}.detail span{display:block;color:var(--gris);font-size:12px;font-weight:800;margin-bottom:4px}.detail strong{font-size:14px;word-break:break-word}.json-box{background:#0b1f27;color:#d8f3ff;border-radius:16px;padding:16px;font-size:12px;overflow:auto;max-height:360px;white-space:pre-wrap}.footer-note{text-align:center;color:var(--gris);font-size:13px;margin-top:20px}
+    @media(max-width:1100px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.topbar{padding:16px;align-items:flex-start;flex-direction:column}.brand img{width:74px}.brand h1{font-size:20px}main{padding:0 14px}.stats{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.buttons{flex-direction:column}.button-group,button{width:100%}.detail-grid{grid-template-columns:1fr}}
+  </style>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="brand"><img src="Logo_Consultores_Martin_Color.png" alt="Logo Consultores Martín S.A.S."><div><h1>CONSULTORES MARTÍN S.A.S.</h1><p>Panel administrativo de vinculación y actualización de contrapartes</p></div></div><div class="top-actions"><span class="pill">SAGRILAFT</span><span class="pill">PTEE</span><span class="pill">HABEAS DATA</span></div></header>
+  <main>
+    <section class="hero"><div class="hero-card"><span class="pill">Prevención, antes que materialización</span><h2>Consulta y gestión de contrapartes</h2><p>Centraliza los expedientes recibidos desde el formulario web, consulta registros por fecha, tipo de persona, estado o búsqueda general, revisa el detalle de cada vinculación y exporta la base completa para análisis en Excel.</p></div><div class="notice"><strong>Nota:</strong> este panel está en fase de prueba y actualmente no tiene usuario ni contraseña. Una vez validada la consulta y exportación, se recomienda protegerlo con autenticación.</div></section>
+    <section class="stats"><div class="stat"><span>Total consultado</span><strong id="statTotal">0</strong></div><div class="stat"><span>Pendientes</span><strong id="statPendientes">0</strong></div><div class="stat"><span>Aprobadas</span><strong id="statAprobadas">0</strong></div><div class="stat"><span>Rechazadas</span><strong id="statRechazadas">0</strong></div></section>
+    <section class="section"><div class="section-head"><h3>Consultar contrapartes</h3><span id="estadoConexion">Listo para consultar</span></div><div class="filters"><div><label for="fechaInicial">Fecha inicial</label><input type="date" id="fechaInicial"></div><div><label for="fechaFinal">Fecha final</label><input type="date" id="fechaFinal"></div><div><label for="tipoPersona">Tipo persona</label><select id="tipoPersona"><option value="">Todas</option><option value="PN">Persona Natural</option><option value="PJ">Persona Jurídica</option></select></div><div><label for="proceso">Proceso</label><input type="text" id="proceso" placeholder="Vinculación, actualización..."></div><div><label for="estado">Estado</label><select id="estado"><option value="">Todos</option><option value="Pendiente">Pendiente</option><option value="Aprobado">Aprobado</option><option value="Rechazado">Rechazado</option><option value="Solicitar información">Solicitar información</option></select></div><div><label for="busqueda">Buscar</label><input type="text" id="busqueda" placeholder="Radicado, nombre, NIT..."></div></div><div class="buttons"><div class="button-group"><button class="btn-primary" type="button" onclick="consultarContrapartes()">Consultar contrapartes</button><button class="btn-light" type="button" onclick="limpiarFiltros()">Limpiar filtros</button></div><div class="button-group"><button class="btn-excel" type="button" onclick="exportarExcel()">Exportar a Excel / CSV</button></div></div><div class="resume" id="resumenConsulta">Sin resultados cargados.</div><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Radicado</th><th>Nombre / Razón social</th><th>Documento / NIT</th><th>Tipo</th><th>Proceso</th><th>Correo</th><th>Teléfono</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="tablaContrapartes"><tr><td colspan="10" class="empty">Presiona “Consultar contrapartes” para cargar la información.</td></tr></tbody></table></div></section>
+    <p class="footer-note">Diseño basado en la identidad visual de Consultores Martín S.A.S.</p>
+  </main>
+  <div class="drawer-backdrop" id="drawerBackdrop"><aside class="drawer"><div class="drawer-header"><div><h3 id="drawerTitulo">Detalle del expediente</h3><p id="drawerSubtitulo"></p></div><button class="close" onclick="cerrarDetalle()">×</button></div><div class="drawer-body"><div class="detail-grid" id="detalleResumen"></div><h4>Datos completos del formulario</h4><pre class="json-box" id="detalleJson"></pre></div></aside></div>
+  <script>
+    const API_VINCULACION = "https://l3xklo3sh0.execute-api.us-east-2.amazonaws.com/vinculacion"; let resultadosActuales = [];
+    function obtenerValor(id){return document.getElementById(id)?.value?.trim()||""} function datosFormulario(item){return item.personaNatural||item.personaJuridica||item.camposFormulario||{}} function fechaBonita(fechaIso){if(!fechaIso)return"";const f=new Date(fechaIso);if(Number.isNaN(f.getTime()))return fechaIso.substring(0,10);return f.toLocaleDateString("es-CO",{year:"numeric",month:"2-digit",day:"2-digit"})} function obtenerProceso(item){const d=datosFormulario(item);return d.proceso||d.proceso_pj||d.tipo_proceso||""} function obtenerDocumento(item){const d=datosFormulario(item);return item.numeroIdentificacion||d.numero_identificacion||d.numero_identificacion_pj||d.nit||""} function statusClass(estado){const e=(estado||"").toLowerCase();if(e.includes("aprob"))return"aprobado";if(e.includes("rechaz"))return"rechazado";if(e.includes("inform"))return"info";return""}
+    function actualizarEstadisticas(items){document.getElementById("statTotal").textContent=items.length;document.getElementById("statPendientes").textContent=items.filter(i=>(i.estado||"")==="Pendiente").length;document.getElementById("statAprobadas").textContent=items.filter(i=>(i.estado||"")==="Aprobado").length;document.getElementById("statRechazadas").textContent=items.filter(i=>(i.estado||"")==="Rechazado").length}
+    function renderTabla(items){const tbody=document.getElementById("tablaContrapartes");actualizarEstadisticas(items);if(!items.length){tbody.innerHTML='<tr><td colspan="10" class="empty">No se encontraron contrapartes con los filtros seleccionados.</td></tr>';return}tbody.innerHTML=items.map((item,index)=>{const pdf=item.rutaPdfFormulario||item.pdfFormulario?.rutaS3||"";const rutaS3=item.rutaS3||"";return `<tr><td>${fechaBonita(item.fechaRegistro)}</td><td><strong>${item.radicado||""}</strong></td><td>${item.nombreORazonSocial||""}</td><td>${obtenerDocumento(item)}</td><td>${item.tipoPersona||""}</td><td>${obtenerProceso(item)}</td><td>${item.correo||""}</td><td>${item.telefono||""}</td><td><span class="status ${statusClass(item.estado)}">${item.estado||""}</span></td><td><button class="small-btn" type="button" onclick="verDetalle(${index})">Ver</button>${pdf?`<button class="small-btn" type="button" onclick="copiarTexto('${pdf.replaceAll("'","\\'")}')">Copiar PDF</button>`:""}${rutaS3?`<button class="small-btn" type="button" onclick="copiarTexto('${rutaS3.replaceAll("'","\\'")}')">Copiar S3</button>`:""}</td></tr>`}).join("")}
+    async function consultarContrapartes(){const main=document.querySelector("main"), estadoConexion=document.getElementById("estadoConexion"), resumenConsulta=document.getElementById("resumenConsulta");main.classList.add("loading");estadoConexion.textContent="Consultando...";try{const respuesta=await fetch(API_VINCULACION,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({accion:"consultarContrapartes",fechaInicial:obtenerValor("fechaInicial"),fechaFinal:obtenerValor("fechaFinal"),tipoPersona:obtenerValor("tipoPersona"),estado:obtenerValor("estado"),busqueda:[obtenerValor("busqueda"),obtenerValor("proceso")].filter(Boolean).join(" ")})});const resultado=await respuesta.json();if(!resultado.ok)throw new Error(resultado.mensaje||"No fue posible consultar las contrapartes.");resultadosActuales=resultado.contrapartes||[];renderTabla(resultadosActuales);resumenConsulta.textContent=`Resultados encontrados: ${resultadosActuales.length}`;estadoConexion.textContent="Consulta completada"}catch(error){console.error(error);alert("No fue posible consultar las contrapartes. Revisa la API o la conexión.");estadoConexion.textContent="Error en la consulta"}finally{main.classList.remove("loading")}}
+    function verDetalle(index){const item=resultadosActuales[index];if(!item)return;const d=datosFormulario(item);document.getElementById("drawerTitulo").textContent=item.radicado||"Detalle del expediente";document.getElementById("drawerSubtitulo").textContent=`${item.nombreORazonSocial||""} · ${item.tipoPersona||""}`;const resumen=[["Fecha",fechaBonita(item.fechaRegistro)],["Estado",item.estado||""],["Tipo persona",item.tipoPersona||""],["Proceso",obtenerProceso(item)],["Nombre / Razón social",item.nombreORazonSocial||""],["Documento / NIT",obtenerDocumento(item)],["Correo",item.correo||""],["Teléfono",item.telefono||""],["Ruta S3",item.rutaS3||""],["PDF",item.rutaPdfFormulario||item.pdfFormulario?.rutaS3||""]];document.getElementById("detalleResumen").innerHTML=resumen.map(([k,v])=>`<div class="detail"><span>${k}</span><strong>${v||"-"}</strong></div>`).join("");document.getElementById("detalleJson").textContent=JSON.stringify(d,null,2);document.getElementById("drawerBackdrop").classList.add("active")}
+    function cerrarDetalle(){document.getElementById("drawerBackdrop").classList.remove("active")} function copiarTexto(texto){navigator.clipboard.writeText(texto).then(()=>alert("Ruta copiada al portapapeles.")).catch(()=>alert(texto))} function escaparCSV(valor){const texto=valor===null||valor===undefined?"":String(valor);return '"'+texto.replaceAll('"','""')+'"'} function aplanarObjeto(obj,prefijo="",salida={}){if(!obj||typeof obj!=="object")return salida;Object.entries(obj).forEach(([clave,valor])=>{const nuevaClave=prefijo?`${prefijo}.${clave}`:clave;if(Array.isArray(valor)){salida[nuevaClave]=valor.map(v=>v&&typeof v==="object"?JSON.stringify(v):v).join(" | ")}else if(valor&&typeof valor==="object"){aplanarObjeto(valor,nuevaClave,salida)}else{salida[nuevaClave]=valor??""}});return salida}
+    function exportarExcel() {
+  if (!resultadosActuales.length) {
+    alert("Primero consulta las contrapartes.");
+    return;
+  }
+
+  function aplanarObjeto(obj, prefijo = "", salida = {}) {
+    if (!obj || typeof obj !== "object") return salida;
+
+    Object.entries(obj).forEach(([clave, valor]) => {
+      const nuevaClave = prefijo ? `${prefijo}.${clave}` : clave;
+
+      if (Array.isArray(valor)) {
+        salida[nuevaClave] = valor.map(v => {
+          if (v && typeof v === "object") return JSON.stringify(v);
+          return v;
+        }).join(" | ");
+      } else if (valor && typeof valor === "object") {
+        aplanarObjeto(valor, nuevaClave, salida);
+      } else {
+        salida[nuevaClave] = valor ?? "";
+      }
+    });
+
+    return salida;
+  }
+
+  function prepararFila(item) {
+    const datos = item.personaNatural || item.personaJuridica || item.camposFormulario || {};
+    const plano = aplanarObjeto(datos);
+
+    return {
+      Radicado: item.radicado || "",
+      FechaRegistro: item.fechaRegistro || "",
+      TipoPersona: item.tipoPersona || "",
+      Estado: item.estado || "",
+      NombreORazonSocial: item.nombreORazonSocial || "",
+      TipoIdentificacion: item.tipoIdentificacion || "",
+      NumeroIdentificacion: item.numeroIdentificacion || "",
+      Correo: item.correo || "",
+      Telefono: item.telefono || "",
+      Proceso: datos.proceso || datos.proceso_pj || "",
+      RutaS3: item.rutaS3 || "",
+      RutaPdfFormulario: item.rutaPdfFormulario || item.pdfFormulario?.rutaS3 || "",
+      ...plano
+    };
+  }
+
+  const personaNatural = resultadosActuales
+    .filter(item => item.tipoPersona === "PN")
+    .map(prepararFila);
+
+  const personaJuridica = resultadosActuales
+    .filter(item => item.tipoPersona === "PJ")
+    .map(prepararFila);
+
+  const wb = XLSX.utils.book_new();
+
+  const wsPN = XLSX.utils.json_to_sheet(personaNatural.length ? personaNatural : [{}]);
+  const wsPJ = XLSX.utils.json_to_sheet(personaJuridica.length ? personaJuridica : [{}]);
+
+  XLSX.utils.book_append_sheet(wb, wsPN, "Persona Natural");
+  XLSX.utils.book_append_sheet(wb, wsPJ, "Persona Juridica");
+
+  const fecha = new Date().toISOString().substring(0, 10);
+  XLSX.writeFile(wb, `Contrapartes_${fecha}.xlsx`);
+}
+    function limpiarFiltros(){["fechaInicial","fechaFinal","tipoPersona","proceso","estado","busqueda"].forEach(id=>{const c=document.getElementById(id);if(c)c.value=""});resultadosActuales=[];renderTabla([]);document.getElementById("resumenConsulta").textContent="Filtros limpiados. Presiona “Consultar contrapartes”.";document.getElementById("estadoConexion").textContent="Listo para consultar"}
+  </script>
+</body>
+</html>
