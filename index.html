@@ -5845,6 +5845,7 @@ archivos.push({
       tipoPersona,
       estado: "Pendiente",
       resumen,
+      datosAcceso: datosAccesoFormulario,
       personaNatural: tipoPersona === "PN" ? datos : null,
       personaJuridica: tipoPersona === "PJ" ? datos : null,
       documentos: resultadoUrls.urls.map(({ uploadUrl, ...doc }) => doc)
